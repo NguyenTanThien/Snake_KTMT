@@ -14,7 +14,7 @@ int main()
 	} while (!end_game);
 	if (end_game == true)
 	{
-		cout << "GAME OVERRRR!!" << endl;
+		cout << "GAME OVER!" << endl;
 	}
 	system("pause");
     return 0;
