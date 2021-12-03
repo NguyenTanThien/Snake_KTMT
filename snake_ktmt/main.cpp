@@ -15,6 +15,16 @@ direction dir;
 int tail_X[200], tail_Y[200];
 int ntail;
 
+void New_snake()
+{
+	end_game = false;
+	score = 0;
+	dir = Stop;
+	x = length / 2;
+	y = width / 2;
+	food_X = rand() % ((length - 2) - 2 + 1) + 2;
+	food_Y = rand() % ((width - 2) - 2 + 1) + 2;
+}
 //Menu
 void Menu()
 {
