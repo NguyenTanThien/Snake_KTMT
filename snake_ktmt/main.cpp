@@ -15,6 +15,31 @@ direction dir;
 int tail_X[200], tail_Y[200];
 int ntail;
 
+void New_snake();
+void DrawMap();
+void Key_input();
+void Rule();
+void Menu();
+
+int main()
+{
+	New_snake();
+	Menu();
+	do
+	{
+		DrawMap();
+		Key_input();
+		Rule();
+		Sleep(speed);
+	} while (!end_game);
+	if (end_game == true)
+	{
+		cout << "GAME OVER!" << endl;
+	}
+	system("pause");
+    return 0;
+}
+
 void New_snake()
 {
 	end_game = false;
@@ -25,7 +50,7 @@ void New_snake()
 	food_X = rand() % ((length - 2) - 2 + 1) + 2;
 	food_Y = rand() % ((width - 2) - 2 + 1) + 2;
 }
-//Menu
+
 void Menu()
 {
 	int diff;
@@ -134,7 +159,7 @@ void Rule()
 void DrawMap()
 {
 	system("cls");
-	cout << "Di chuyen: WASD" << endl << "Thoat: X" << endl;
+	cout << "Di chuyen: W A S D" << endl << "Thoat: X" << endl;
 	for (int i = 0; i < width; i++)
 	{
 		for (int j = 0; j < length; j++)
@@ -148,7 +173,7 @@ void DrawMap()
 				else
 					cout << "  ";
 			}
-			if (i == y && j == x)	
+			if (i == y && j == x)
 				cout << "H";
 			else if (i == food_Y && j == food_X)
 				cout << "X";
@@ -171,21 +196,36 @@ void DrawMap()
 	}
 	cout << "Diem So: " << score << endl;
 }
-int main()
+
+void Key_input()
 {
-	New_snake();
-	Menu();
-	do
+	if (_kbhit())
 	{
-		DrawMap();
-		Key_input();
-		Rule();
-		Sleep(speed);
-	} while (!end_game);
-	if (end_game == true)
-	{
-		cout << "GAME OVER!" << endl;
+		switch (_getch())
+		{
+		case 'a':
+			if (dir == Right)
+				break;
+			dir = Left;
+			break;
+		case 'd':
+			if (dir == Left)
+				break;
+			dir = Right;
+			break;
+		case 'w':
+			if (dir == Down)
+				break;
+			dir = Up;
+			break;
+		case 's':
+			if (dir == Up)
+				break;
+			dir = Down;
+			break;
+		case 'x':
+			end_game = true;
+			break;
+		}
 	}
-	system("pause");
-    return 0;
 }
