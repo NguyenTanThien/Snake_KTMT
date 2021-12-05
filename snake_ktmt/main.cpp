@@ -130,7 +130,47 @@ void Rule()
 			end_game = true;
 	}
 }
-
+//DrawMap
+void DrawMap()
+{
+	system("cls");
+	cout << "Di chuyen: WASD" << endl << "Thoat: X" << endl;
+	for (int i = 0; i < width; i++)
+	{
+		for (int j = 0; j < length; j++)
+		{
+			if (i == 0 || i == width - 1)
+				cout << "# ";
+			else
+			{
+				if (j == 0 || j == length - 1)
+					cout << "# ";
+				else
+					cout << "  ";
+			}
+			if (i == y && j == x)	
+				cout << "H";
+			else if (i == food_Y && j == food_X)
+				cout << "X";
+			else
+			{
+				bool print = false;
+				for (int k = 0; k < ntail; k++)
+				{
+					if (tail_Y[k] == i && tail_X[k] == j)
+					{
+						cout << "O";
+						print = true;
+					}
+				}
+				if (!print)
+					cout << " ";
+			}
+		}
+		cout << endl;
+	}
+	cout << "Diem So: " << score << endl;
+}
 int main()
 {
 	New_snake();
@@ -148,5 +188,4 @@ int main()
 	}
 	system("pause");
     return 0;
-    //19521103
 }
